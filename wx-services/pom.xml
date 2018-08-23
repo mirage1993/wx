@@ -12,5 +12,17 @@
     <groupId>com.wx.platform.services</groupId>
     <artifactId>wx-services</artifactId>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.wx.platform.core</groupId>
+                <artifactId>wx-core</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>com.wx.platform.dao</groupId>
+                <artifactId>wx-dao</artifactId>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

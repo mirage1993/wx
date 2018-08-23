@@ -12,5 +12,17 @@
     <groupId>com.wx.platform.facades</groupId>
     <artifactId>wx-facades</artifactId>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.wx.platform.core</groupId>
+                <artifactId>wx-core</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>com.wx.platform.services</groupId>
+                <artifactId>wx-services</artifactId>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
