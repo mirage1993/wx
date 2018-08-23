@@ -9,9 +9,12 @@
         <module name="wx-core" />
         <module name="wx-dao" />
         <module name="wx-facades" />
+        <module name="wx-server" />
         <module name="wx-services" />
-        <module name="wx-web" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="wx-web" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

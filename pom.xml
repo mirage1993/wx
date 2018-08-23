@@ -13,6 +13,7 @@
         <module>wx-facades</module>
         <module>wx-services</module>
         <module>wx-dao</module>
+        <module>wx-server</module>
     </modules>
 
     <parent>
