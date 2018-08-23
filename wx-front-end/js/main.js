@@ -36,7 +36,8 @@ angular.module('app')
                     asideFolded: false,
                     asideDock: false,
                     container: false
-                }
+                },
+				baseurl:'http://127.0.0.1/'
             }
 
             // save settings to local storage
