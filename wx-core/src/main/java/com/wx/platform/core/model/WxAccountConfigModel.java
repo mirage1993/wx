@@ -6,6 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+/**
+ * 微信公众号账号配置
+ */
 @Entity
 @Table(name = "wx_account_config")
 public class WxAccountConfigModel implements Serializable {
@@ -14,12 +17,21 @@ public class WxAccountConfigModel implements Serializable {
     @Column(name = "wx_id")
     private String wxId;
 
+    /**
+     * 公众号名称
+     */
     @Column(name = "wx_name")
     private String wxName;
 
+    /**
+     * 公众号原始Id
+     */
     @Column(name = "wx_source_id")
     private String wxSourceId;
 
+    /**
+     * 公众号账号
+     */
     @Column(name = "wx_number")
     private String wxNumber;
 
@@ -35,9 +47,15 @@ public class WxAccountConfigModel implements Serializable {
     @Column(name = "wx_sort")
     private Integer wxSort;
 
+    /**
+     * 是否启用
+     */
     @Column(name = "wx_is_valid")
     private Integer wxIsValid;
 
+    /**
+     * 公众号描述
+     */
     @Column(name = "wx_description")
     private String wxDescription;
 
