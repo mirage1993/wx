@@ -2,11 +2,11 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wx-converters" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wx-core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wx-dao" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wx-facades" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wx-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wx-services" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/wx-web" charset="UTF-8" />
   </component>
 </project>
