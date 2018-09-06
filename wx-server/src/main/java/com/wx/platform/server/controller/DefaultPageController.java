@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Scope("prototype")
 public class DefaultPageController {
 
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @RequestMapping("/getCurrentUser")
     @ResponseBody
     public UserDetail getCurrentUser() {

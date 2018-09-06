@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信公众平台登录</title>
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+</head>
+<body>
+<input type="button" value="登录" class=".login"/>
+<script>
+
+    $("input").bind("click", function () {
+        debugger;
+        var params = new Map();
+        params.set("username", "");
+        params.set("password", "");
+        var form = $("<form method='post'></form>");
+        var input;
+        form.attr({"action": '/login'});
+        for (var key in params) {
+            input = $("<input type='hidden'>");
+            input.attr("name", key);
+            input.val(params[value]);
+            form.append(input);
+        }
+        $(document.body).append(form);
+        form.submit();
+    });
+</script>
+</body>
+</html>
