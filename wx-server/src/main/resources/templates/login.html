@@ -5,28 +5,59 @@
     <title>微信公众平台登录</title>
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #7F7F7F;
+        }
+    </style>
 </head>
 <body>
-<input type="button" value="登录" class=".login"/>
-<script>
+<!--<div class="ld_header">-->
+<!--<div class="ld_header_in">-->
+<!--<div class="ld_logo">-->
+<!--&lt;!&ndash;<a href="/"><img src="images/ld_logo.png" alt="微信公众平台"></a>&ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<div class="ldL_con">
+    <div class="ldL_con_in">
+        <div class="ld_form">
+            <form id="login-form" method="post" action="/login">
+                <h3 class="form_title">用户登录</h3>
+                <p>
+                    <input type="text" name="userName" id="userName"/>
+                </p>
+                <p>
+                    <input type="password" id="password" name="password" class="ld_pass"/>
+                </p>
 
-    $("input").bind("click", function () {
-        debugger;
-        var params = new Map();
-        params.set("username", "");
-        params.set("password", "");
-        var form = $("<form method='post'></form>");
-        var input;
-        form.attr({"action": '/login'});
-        for (var key in params) {
-            input = $("<input type='hidden'>");
-            input.attr("name", key);
-            input.val(params[value]);
-            form.append(input);
-        }
-        $(document.body).append(form);
-        form.submit();
-    });
-</script>
+                <div class="ld_login">
+                    <div class="ld_login_in">登录</div>
+                    <div id="login-msg"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div class="ld_footer">
+    <div class="ld_footer_in">
+        <p> Copyright &copy; 微信公众平台</p>
+        <p>技术支持: <a href="mailto:yongyongwang1993@gmail.com">yongyongwang1993@gmail.com</a></p>
+    </div>
+</div>
 </body>
 </html>
+<script type="text/javascript">
+    $(".ld_login_in").bind('click', function (e) {
+        $('#login-form').submit();
+    });
+</script>
