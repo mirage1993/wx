@@ -5,6 +5,8 @@
     <title>微信公众平台登录</title>
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/plugin/jquery.form.min.js"></script>
+    <script src="js/plugin/jquery.hotkeys.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <style type="text/css">
         html, body {
@@ -57,7 +59,40 @@
 </body>
 </html>
 <script type="text/javascript">
+    var formValid = function () {
+        var username = $("#userName").val().trim();
+        var password = $("#password").val().trim();
+        if (username == '') {
+            $("#login-msg").text("请输入用户名！");
+            $("#userName").focus();
+            return false;
+        }
+        if (password == '') {
+            $("#login-msg").text("请输入密码！");
+            $("#password").focus();
+            return false;
+        }
+        $("#login-msg").empty();
+        return true;
+    }
+    $(document).bind('keydown', 'return', function (e) {
+        if (formValid()) {
+            $(".ld_login_in").click();
+        }
+    });
+    $("#userName").bind('keydown', 'return', function (e) {
+        if (formValid()) {
+            $(".ld_login_in").click();
+        }
+    });
     $(".ld_login_in").bind('click', function (e) {
-        $('#login-form').submit();
+        if (formValid()) {
+            var username = $("#userName").val().trim();
+            var password = $("#password").val().trim();
+            $(".ld_login_in").text('登录中...');
+            $('#login-form').ajaxForm(function (data) {
+                console.log(data);
+            });
+        }
     });
 </script>
