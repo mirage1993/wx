@@ -43,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/l10n/**").permitAll()
                 .antMatchers("/tbl/**").permitAll()
                 .antMatchers("/vendor/**").permitAll()
+                .antMatchers("/favicon.ico").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().csrfTokenRepository(csrfTokenRepository)
