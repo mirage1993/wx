@@ -5,6 +5,7 @@
     <title>微信公众平台登录</title>
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/common.js"></script>
     <script src="js/plugin/jquery.form.min.js"></script>
     <script src="js/plugin/jquery.hotkeys.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -90,6 +91,7 @@
             var username = $("#userName").val().trim();
             var password = $("#password").val().trim();
             $(".ld_login_in").text('登录中...');
+
             $('#login-form').submit();
             // $('#login-form').ajaxForm(function (data) {
             //     console.log(data);
