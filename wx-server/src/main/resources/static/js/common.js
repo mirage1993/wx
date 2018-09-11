@@ -1,4 +1,4 @@
-var ajax = function () {
+var ajaxHelper = function () {
     var ajaxOptions = {
         url: '',
         async: true,
@@ -27,8 +27,7 @@ var ajax = function () {
                 $.each(arguments, function (i, j) {
                     options = $.extend({}, ajaxOptions, arguments[i]);
                 });
-            }
-            ;
+            };
             $.ajax(options);
         }
     };

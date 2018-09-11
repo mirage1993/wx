@@ -92,7 +92,12 @@
             var password = $("#password").val().trim();
             $(".ld_login_in").text('登录中...');
 
-            $('#login-form').submit();
+            //$('#login-form').submit();
+            ajaxHelper().submit({
+                url: '/login'
+                , contentType: "application/x-www-form-urlencoded"
+                , data: $("#login-form").serialize()
+            });
             // $('#login-form').ajaxForm(function (data) {
             //     console.log(data);
             // });
