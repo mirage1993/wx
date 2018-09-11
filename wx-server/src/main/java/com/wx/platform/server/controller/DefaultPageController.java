@@ -22,4 +22,12 @@ public class DefaultPageController {
         return userDetail;
     }
 
+    @RequestMapping("/getNav")
+    @ResponseBody
+    public String getNav() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("nav");
+        return sb.toString();
+    }
+
 }
