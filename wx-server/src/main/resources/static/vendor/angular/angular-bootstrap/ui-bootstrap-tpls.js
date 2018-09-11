@@ -6,7 +6,7 @@
  * License: MIT
  */
 angular.module("ui.bootstrap", ["ui.bootstrap.tpls", "ui.bootstrap.transition","ui.bootstrap.collapse","ui.bootstrap.accordion","ui.bootstrap.alert","ui.bootstrap.bindHtml","ui.bootstrap.buttons","ui.bootstrap.carousel","ui.bootstrap.dateparser","ui.bootstrap.position","ui.bootstrap.datepicker","ui.bootstrap.dropdown","ui.bootstrap.modal","ui.bootstrap.pagination","ui.bootstrap.tooltip","ui.bootstrap.popover","ui.bootstrap.progressbar","ui.bootstrap.rating","ui.bootstrap.tabs","ui.bootstrap.timepicker","ui.bootstrap.typeahead"]);
-angular.module("ui.bootstrap.tpls", ["templates/accordion/accordion-group.html","templates/accordion/accordion.html","templates/alert/alert.html","templates/carousel/carousel.html","templates/carousel/slide.html","templates/datepicker/datepicker.html","templates/datepicker/day.html","templates/datepicker/month.html","templates/datepicker/popup.html","templates/datepicker/year.html","templates/modal/backdrop.html","templates/modal/window.html","templates/pagination/pager.html","templates/pagination/pagination.html","templates/tooltip/tooltip-html-unsafe-popup.html","templates/tooltip/tooltip-popup.html","templates/popover/popover.html","templates/progressbar/bar.html","templates/progressbar/progress.html","templates/progressbar/progressbar.html","templates/rating/rating.html","templates/tabs/tab.html","templates/tabs/tabset.html","templates/timepicker/timepicker.html","templates/typeahead/typeahead-match.html","templates/typeahead/typeahead-popup.html"]);
+angular.module("ui.bootstrap.tpls", ["template/accordion/accordion-group.html","template/accordion/accordion.html","template/alert/alert.html","template/carousel/carousel.html","template/carousel/slide.html","template/datepicker/datepicker.html","template/datepicker/day.html","template/datepicker/month.html","template/datepicker/popup.html","template/datepicker/year.html","template/modal/backdrop.html","template/modal/window.html","template/pagination/pager.html","template/pagination/pagination.html","template/tooltip/tooltip-html-unsafe-popup.html","template/tooltip/tooltip-popup.html","template/popover/popover.html","template/progressbar/bar.html","template/progressbar/progress.html","template/progressbar/progressbar.html","template/rating/rating.html","template/tabs/tab.html","template/tabs/tabset.html","template/timepicker/timepicker.html","template/typeahead/typeahead-match.html","template/typeahead/typeahead-popup.html"]);
 angular.module('ui.bootstrap.transition', [])
 
 /**
@@ -217,7 +217,7 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse'])
     controller:'AccordionController',
     transclude: true,
     replace: false,
-    templateUrl: 'templates/accordion/accordion.html'
+    templateUrl: 'template/accordion/accordion.html'
   };
 })
 
@@ -226,9 +226,9 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse'])
   return {
     require:'^accordion',         // We need this directive to be inside an accordion
     restrict:'EA',
-    transclude:true,              // It transcludes the contents of the directive into the templates
-    replace: true,                // The element containing the directive will be replaced with the templates
-    templateUrl:'templates/accordion/accordion-group.html',
+    transclude:true,              // It transcludes the contents of the directive into the template
+    replace: true,                // The element containing the directive will be replaced with the template
+    templateUrl:'template/accordion/accordion-group.html',
     scope: {
       heading: '@',               // Interpolate the heading attribute onto this scope
       isOpen: '=?',
@@ -270,14 +270,14 @@ angular.module('ui.bootstrap.accordion', ['ui.bootstrap.collapse'])
     require: '^accordionGroup',
     link: function(scope, element, attr, accordionGroupCtrl, transclude) {
       // Pass the heading to the accordion-group controller
-      // so that it can be transcluded into the right place in the templates
+      // so that it can be transcluded into the right place in the template
       // [The second parameter to transclude causes the elements to be cloned so that they work in ng-repeat]
       accordionGroupCtrl.setHeading(transclude(scope, function() {}));
     }
   };
 })
 
-// Use in the accordion-group templates to indicate where you want the heading to be transcluded
+// Use in the accordion-group template to indicate where you want the heading to be transcluded
 // You must provide the property on the accordion-group controller that will hold the transcluded element
 // <div class="accordion-group">
 //   <div class="accordion-heading" ><a ... accordion-transclude="heading">...</a></div>
@@ -308,7 +308,7 @@ angular.module('ui.bootstrap.alert', [])
   return {
     restrict:'EA',
     controller:'AlertController',
-    templateUrl:'templates/alert/alert.html',
+    templateUrl:'template/alert/alert.html',
     transclude:true,
     replace:true,
     scope: {
@@ -441,7 +441,7 @@ angular.module('ui.bootstrap.carousel', ['ui.bootstrap.transition'])
     if (nextSlide && nextSlide !== self.currentSlide) {
       if ($scope.$currentTransition) {
         $scope.$currentTransition.cancel();
-        //Timeout so ng-class in templates has time to fix classes for finished slide
+        //Timeout so ng-class in template has time to fix classes for finished slide
         $timeout(goNext);
       } else {
         goNext();
@@ -632,7 +632,7 @@ angular.module('ui.bootstrap.carousel', ['ui.bootstrap.transition'])
     replace: true,
     controller: 'CarouselController',
     require: 'carousel',
-    templateUrl: 'templates/carousel/carousel.html',
+    templateUrl: 'template/carousel/carousel.html',
     scope: {
       interval: '=',
       noTransition: '=',
@@ -688,7 +688,7 @@ function CarouselDemoCtrl($scope) {
     restrict: 'EA',
     transclude: true,
     replace: true,
-    templateUrl: 'templates/carousel/slide.html',
+    templateUrl: 'template/carousel/slide.html',
     scope: {
       active: '=?'
     },
@@ -1171,7 +1171,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   return {
     restrict: 'EA',
     replace: true,
-    templateUrl: 'templates/datepicker/datepicker.html',
+    templateUrl: 'template/datepicker/datepicker.html',
     scope: {
       datepickerMode: '=?',
       dateDisabled: '&'
@@ -1192,7 +1192,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   return {
     restrict: 'EA',
     replace: true,
-    templateUrl: 'templates/datepicker/day.html',
+    templateUrl: 'template/datepicker/day.html',
     require: '^datepicker',
     link: function(scope, element, attrs, ctrl) {
       scope.showWeeks = ctrl.showWeeks;
@@ -1300,7 +1300,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   return {
     restrict: 'EA',
     replace: true,
-    templateUrl: 'templates/datepicker/month.html',
+    templateUrl: 'template/datepicker/month.html',
     require: '^datepicker',
     link: function(scope, element, attrs, ctrl) {
       ctrl.step = { years: 1 };
@@ -1355,7 +1355,7 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   return {
     restrict: 'EA',
     replace: true,
-    templateUrl: 'templates/datepicker/year.html',
+    templateUrl: 'template/datepicker/year.html',
     require: '^datepicker',
     link: function(scope, element, attrs, ctrl) {
       var range = ctrl.yearRange;
@@ -1595,7 +1595,7 @@ function ($compile, $parse, $document, $position, dateFilter, dateParser, datepi
       };
 
       var $popup = $compile(popupEl)(scope);
-      // Prevent jQuery cache memory leak (templates is now redundant after linking)
+      // Prevent jQuery cache memory leak (template is now redundant after linking)
       popupEl.remove();
 
       if ( appendToBody ) {
@@ -1618,7 +1618,7 @@ function ($compile, $parse, $document, $position, dateFilter, dateParser, datepi
     restrict:'EA',
     replace: true,
     transclude: true,
-    templateUrl: 'templates/datepicker/popup.html',
+    templateUrl: 'template/datepicker/popup.html',
     link:function (scope, element, attrs) {
       element.bind('click', function(event) {
         event.preventDefault();
@@ -1853,7 +1853,7 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.transition'])
     return {
       restrict: 'EA',
       replace: true,
-      templateUrl: 'templates/modal/backdrop.html',
+      templateUrl: 'template/modal/backdrop.html',
       link: function (scope, element, attrs) {
         scope.backdropClass = attrs.backdropClass || '';
 
@@ -1877,7 +1877,7 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.transition'])
       replace: true,
       transclude: true,
       templateUrl: function(tElement, tAttrs) {
-        return tAttrs.templateUrl || 'templates/modal/window.html';
+        return tAttrs.templateUrl || 'template/modal/window.html';
       },
       link: function (scope, element, attrs) {
         element.addClass(attrs.windowClass || '');
@@ -2144,7 +2144,7 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.transition'])
 
             //verify options
             if (!modalOptions.template && !modalOptions.templateUrl) {
-              throw new Error('One of templates or templateUrl options is required.');
+              throw new Error('One of template or templateUrl options is required.');
             }
 
             var templateAndResolvePromise =
@@ -2295,7 +2295,7 @@ angular.module('ui.bootstrap.pagination', [])
     },
     require: ['pagination', '?ngModel'],
     controller: 'PaginationController',
-    templateUrl: 'templates/pagination/pagination.html',
+    templateUrl: 'template/pagination/pagination.html',
     replace: true,
     link: function(scope, element, attrs, ctrls) {
       var paginationCtrl = ctrls[0], ngModelCtrl = ctrls[1];
@@ -2319,7 +2319,7 @@ angular.module('ui.bootstrap.pagination', [])
         });
       }
 
-      // Create page object used in templates
+      // Create page object used in template
       function makePage(number, text, isActive) {
         return {
           number: number,
@@ -2406,7 +2406,7 @@ angular.module('ui.bootstrap.pagination', [])
     },
     require: ['pager', '?ngModel'],
     controller: 'PaginationController',
-    templateUrl: 'templates/pagination/pager.html',
+    templateUrl: 'template/pagination/pager.html',
     replace: true,
     link: function(scope, element, attrs, ctrls) {
       var paginationCtrl = ctrls[0], ngModelCtrl = ctrls[1];
@@ -2762,7 +2762,7 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
     restrict: 'EA',
     replace: true,
     scope: { content: '@', placement: '@', animation: '&', isOpen: '&' },
-    templateUrl: 'templates/tooltip/tooltip-popup.html'
+    templateUrl: 'template/tooltip/tooltip-popup.html'
   };
 })
 
@@ -2775,7 +2775,7 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
     restrict: 'EA',
     replace: true,
     scope: { content: '@', placement: '@', animation: '&', isOpen: '&' },
-    templateUrl: 'templates/tooltip/tooltip-html-unsafe-popup.html'
+    templateUrl: 'template/tooltip/tooltip-html-unsafe-popup.html'
   };
 })
 
@@ -2795,7 +2795,7 @@ angular.module( 'ui.bootstrap.popover', [ 'ui.bootstrap.tooltip' ] )
     restrict: 'EA',
     replace: true,
     scope: { title: '@', content: '@', placement: '@', animation: '&', isOpen: '&' },
-    templateUrl: 'templates/popover/popover.html'
+    templateUrl: 'template/popover/popover.html'
   };
 })
 
@@ -2847,7 +2847,7 @@ angular.module('ui.bootstrap.progressbar', [])
         controller: 'ProgressController',
         require: 'progress',
         scope: {},
-        templateUrl: 'templates/progressbar/progress.html'
+        templateUrl: 'template/progressbar/progress.html'
     };
 })
 
@@ -2861,7 +2861,7 @@ angular.module('ui.bootstrap.progressbar', [])
             value: '=',
             type: '@'
         },
-        templateUrl: 'templates/progressbar/bar.html',
+        templateUrl: 'template/progressbar/bar.html',
         link: function(scope, element, attrs, progressCtrl) {
             progressCtrl.addBar(scope, element);
         }
@@ -2878,7 +2878,7 @@ angular.module('ui.bootstrap.progressbar', [])
             value: '=',
             type: '@'
         },
-        templateUrl: 'templates/progressbar/progressbar.html',
+        templateUrl: 'template/progressbar/progressbar.html',
         link: function(scope, element, attrs, progressCtrl) {
             progressCtrl.addBar(scope, angular.element(element.children()[0]));
         }
@@ -2956,7 +2956,7 @@ angular.module('ui.bootstrap.rating', [])
       onLeave: '&'
     },
     controller: 'RatingController',
-    templateUrl: 'templates/rating/rating.html',
+    templateUrl: 'template/rating/rating.html',
     replace: true,
     link: function(scope, element, attrs, ctrls) {
       var ratingCtrl = ctrls[0], ngModelCtrl = ctrls[1];
@@ -3060,7 +3060,7 @@ angular.module('ui.bootstrap.tabs', [])
       type: '@'
     },
     controller: 'TabsetController',
-    templateUrl: 'templates/tabs/tabset.html',
+    templateUrl: 'template/tabs/tabset.html',
     link: function(scope, element, attrs) {
       scope.vertical = angular.isDefined(attrs.vertical) ? scope.$parent.$eval(attrs.vertical) : false;
       scope.justified = angular.isDefined(attrs.justified) ? scope.$parent.$eval(attrs.justified) : false;
@@ -3153,7 +3153,7 @@ angular.module('ui.bootstrap.tabs', [])
     require: '^tabset',
     restrict: 'EA',
     replace: true,
-    templateUrl: 'templates/tabs/tab.html',
+    templateUrl: 'template/tabs/tab.html',
     transclude: true,
     scope: {
       active: '=?',
@@ -3300,7 +3300,7 @@ angular.module('ui.bootstrap.timepicker', [])
       $scope.showMeridian = !!value;
 
       if ( ngModelCtrl.$error.time ) {
-        // Evaluate from templates
+        // Evaluate from template
         var hours = getHoursFromTemplate(), minutes = getMinutesFromTemplate();
         if (angular.isDefined( hours ) && angular.isDefined( minutes )) {
           selected.setHours( hours );
@@ -3491,7 +3491,7 @@ angular.module('ui.bootstrap.timepicker', [])
     controller:'TimepickerController',
     replace: true,
     scope: {},
-    templateUrl: 'templates/timepicker/timepicker.html',
+    templateUrl: 'template/timepicker/timepicker.html',
     link: function(scope, element, attrs, ctrls) {
       var timepickerCtrl = ctrls[0], ngModelCtrl = ctrls[1];
 
@@ -3600,7 +3600,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         query: 'query',
         position: 'position'
       });
-      //custom item templates
+      //custom item template
       if (angular.isDefined(attrs.typeaheadTemplateUrl)) {
         popUpEl.attr('template-url', attrs.typeaheadTemplateUrl);
       }
@@ -3849,7 +3849,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         select:'&'
       },
       replace:true,
-      templateUrl:'templates/typeahead/typeahead-popup.html',
+      templateUrl:'template/typeahead/typeahead-popup.html',
       link:function (scope, element, attrs) {
 
         scope.templateUrl = attrs.templateUrl;
@@ -3882,7 +3882,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         query:'='
       },
       link:function (scope, element, attrs) {
-        var tplUrl = $parse(attrs.templateUrl)(scope.$parent) || 'templates/typeahead/typeahead-match.html';
+        var tplUrl = $parse(attrs.templateUrl)(scope.$parent) || 'template/typeahead/typeahead-match.html';
         $http.get(tplUrl, {cache: $templateCache}).success(function(tplContent){
            element.replaceWith($compile(tplContent.trim())(scope));
         });
@@ -3902,7 +3902,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
   });
 
 angular.module("template/accordion/accordion-group.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/accordion/accordion-group.html",
+  $templateCache.put("template/accordion/accordion-group.html",
     "<div class=\"panel panel-default\">\n" +
     "  <div class=\"panel-heading\">\n" +
     "    <h4 class=\"panel-title\">\n" +
@@ -3917,12 +3917,12 @@ angular.module("template/accordion/accordion-group.html", []).run(["$templateCac
 }]);
 
 angular.module("template/accordion/accordion.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/accordion/accordion.html",
+  $templateCache.put("template/accordion/accordion.html",
     "<div class=\"panel-group\" ng-transclude></div>");
 }]);
 
 angular.module("template/alert/alert.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/alert/alert.html",
+  $templateCache.put("template/alert/alert.html",
     "<div class=\"alert\" ng-class=\"['alert-' + (type || 'warning'), closeable ? 'alert-dismissable' : null]\" role=\"alert\">\n" +
     "    <button ng-show=\"closeable\" type=\"button\" class=\"close\" ng-click=\"close()\">\n" +
     "        <span aria-hidden=\"true\">&times;</span>\n" +
@@ -3934,7 +3934,7 @@ angular.module("template/alert/alert.html", []).run(["$templateCache", function(
 }]);
 
 angular.module("template/carousel/carousel.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/carousel/carousel.html",
+  $templateCache.put("template/carousel/carousel.html",
     "<div ng-mouseenter=\"pause()\" ng-mouseleave=\"play()\" class=\"carousel\" ng-swipe-right=\"prev()\" ng-swipe-left=\"next()\">\n" +
     "    <ol class=\"carousel-indicators\" ng-show=\"slides.length > 1\">\n" +
     "        <li ng-repeat=\"slide in slides track by $index\" ng-class=\"{active: isActive(slide)}\" ng-click=\"select(slide)\"></li>\n" +
@@ -3947,7 +3947,7 @@ angular.module("template/carousel/carousel.html", []).run(["$templateCache", fun
 }]);
 
 angular.module("template/carousel/slide.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/carousel/slide.html",
+  $templateCache.put("template/carousel/slide.html",
     "<div ng-class=\"{\n" +
     "    'active': leaving || (active && !entering),\n" +
     "    'prev': (next || active) && direction=='prev',\n" +
@@ -3959,7 +3959,7 @@ angular.module("template/carousel/slide.html", []).run(["$templateCache", functi
 }]);
 
 angular.module("template/datepicker/datepicker.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/datepicker/datepicker.html",
+  $templateCache.put("template/datepicker/datepicker.html",
     "<div ng-switch=\"datepickerMode\" role=\"application\" ng-keydown=\"keydown($event)\">\n" +
     "  <daypicker ng-switch-when=\"day\" tabindex=\"0\"></daypicker>\n" +
     "  <monthpicker ng-switch-when=\"month\" tabindex=\"0\"></monthpicker>\n" +
@@ -3968,7 +3968,7 @@ angular.module("template/datepicker/datepicker.html", []).run(["$templateCache",
 }]);
 
 angular.module("template/datepicker/day.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/datepicker/day.html",
+  $templateCache.put("template/datepicker/day.html",
     "<table role=\"grid\" aria-labelledby=\"{{uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n" +
     "  <thead>\n" +
     "    <tr>\n" +
@@ -3994,7 +3994,7 @@ angular.module("template/datepicker/day.html", []).run(["$templateCache", functi
 }]);
 
 angular.module("template/datepicker/month.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/datepicker/month.html",
+  $templateCache.put("template/datepicker/month.html",
     "<table role=\"grid\" aria-labelledby=\"{{uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n" +
     "  <thead>\n" +
     "    <tr>\n" +
@@ -4015,7 +4015,7 @@ angular.module("template/datepicker/month.html", []).run(["$templateCache", func
 }]);
 
 angular.module("template/datepicker/popup.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/datepicker/popup.html",
+  $templateCache.put("template/datepicker/popup.html",
     "<ul class=\"dropdown-menu\" ng-style=\"{display: (isOpen && 'block') || 'none', top: position.top+'px', left: position.left+'px'}\" ng-keydown=\"keydown($event)\">\n" +
     "	<li ng-transclude></li>\n" +
     "	<li ng-if=\"showButtonBar\" style=\"padding:10px 9px 2px\">\n" +
@@ -4030,7 +4030,7 @@ angular.module("template/datepicker/popup.html", []).run(["$templateCache", func
 }]);
 
 angular.module("template/datepicker/year.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/datepicker/year.html",
+  $templateCache.put("template/datepicker/year.html",
     "<table role=\"grid\" aria-labelledby=\"{{uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n" +
     "  <thead>\n" +
     "    <tr>\n" +
@@ -4051,7 +4051,7 @@ angular.module("template/datepicker/year.html", []).run(["$templateCache", funct
 }]);
 
 angular.module("template/modal/backdrop.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/modal/backdrop.html",
+  $templateCache.put("template/modal/backdrop.html",
     "<div class=\"modal-backdrop fade {{ backdropClass }}\"\n" +
     "     ng-class=\"{in: animate}\"\n" +
     "     ng-style=\"{'z-index': 1040 + (index && 1 || 0) + index*10}\"\n" +
@@ -4060,14 +4060,14 @@ angular.module("template/modal/backdrop.html", []).run(["$templateCache", functi
 }]);
 
 angular.module("template/modal/window.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/modal/window.html",
+  $templateCache.put("template/modal/window.html",
     "<div tabindex=\"-1\" role=\"dialog\" class=\"modal fade\" ng-class=\"{in: animate}\" ng-style=\"{'z-index': 1050 + index*10, display: 'block'}\" ng-click=\"close($event)\">\n" +
     "    <div class=\"modal-dialog\" ng-class=\"{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}\"><div class=\"modal-content\" modal-transclude></div></div>\n" +
     "</div>");
 }]);
 
 angular.module("template/pagination/pager.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/pagination/pager.html",
+  $templateCache.put("template/pagination/pager.html",
     "<ul class=\"pager\">\n" +
     "  <li ng-class=\"{disabled: noPrevious(), previous: align}\"><a href ng-click=\"selectPage(page - 1)\">{{getText('previous')}}</a></li>\n" +
     "  <li ng-class=\"{disabled: noNext(), next: align}\"><a href ng-click=\"selectPage(page + 1)\">{{getText('next')}}</a></li>\n" +
@@ -4075,7 +4075,7 @@ angular.module("template/pagination/pager.html", []).run(["$templateCache", func
 }]);
 
 angular.module("template/pagination/pagination.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/pagination/pagination.html",
+  $templateCache.put("template/pagination/pagination.html",
     "<ul class=\"pagination\">\n" +
     "  <li ng-if=\"boundaryLinks\" ng-class=\"{disabled: noPrevious()}\"><a href ng-click=\"selectPage(1)\">{{getText('first')}}</a></li>\n" +
     "  <li ng-if=\"directionLinks\" ng-class=\"{disabled: noPrevious()}\"><a href ng-click=\"selectPage(page - 1)\">{{getText('previous')}}</a></li>\n" +
@@ -4086,7 +4086,7 @@ angular.module("template/pagination/pagination.html", []).run(["$templateCache",
 }]);
 
 angular.module("template/tooltip/tooltip-html-unsafe-popup.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/tooltip/tooltip-html-unsafe-popup.html",
+  $templateCache.put("template/tooltip/tooltip-html-unsafe-popup.html",
     "<div class=\"tooltip {{placement}}\" ng-class=\"{ in: isOpen(), fade: animation() }\">\n" +
     "  <div class=\"tooltip-arrow\"></div>\n" +
     "  <div class=\"tooltip-inner\" bind-html-unsafe=\"content\"></div>\n" +
@@ -4095,7 +4095,7 @@ angular.module("template/tooltip/tooltip-html-unsafe-popup.html", []).run(["$tem
 }]);
 
 angular.module("template/tooltip/tooltip-popup.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/tooltip/tooltip-popup.html",
+  $templateCache.put("template/tooltip/tooltip-popup.html",
     "<div class=\"tooltip {{placement}}\" ng-class=\"{ in: isOpen(), fade: animation() }\">\n" +
     "  <div class=\"tooltip-arrow\"></div>\n" +
     "  <div class=\"tooltip-inner\" ng-bind=\"content\"></div>\n" +
@@ -4104,7 +4104,7 @@ angular.module("template/tooltip/tooltip-popup.html", []).run(["$templateCache",
 }]);
 
 angular.module("template/popover/popover.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/popover/popover.html",
+  $templateCache.put("template/popover/popover.html",
     "<div class=\"popover {{placement}}\" ng-class=\"{ in: isOpen(), fade: animation() }\">\n" +
     "  <div class=\"arrow\"></div>\n" +
     "\n" +
@@ -4117,24 +4117,24 @@ angular.module("template/popover/popover.html", []).run(["$templateCache", funct
 }]);
 
 angular.module("template/progressbar/bar.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/progressbar/bar.html",
+  $templateCache.put("template/progressbar/bar.html",
     "<div class=\"progress-bar\" ng-class=\"type && 'progress-bar-' + type\" role=\"progressbar\" aria-valuenow=\"{{value}}\" aria-valuemin=\"0\" aria-valuemax=\"{{max}}\" ng-style=\"{width: percent + '%'}\" aria-valuetext=\"{{percent | number:0}}%\" ng-transclude></div>");
 }]);
 
 angular.module("template/progressbar/progress.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/progressbar/progress.html",
+  $templateCache.put("template/progressbar/progress.html",
     "<div class=\"progress\" ng-transclude></div>");
 }]);
 
 angular.module("template/progressbar/progressbar.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/progressbar/progressbar.html",
+  $templateCache.put("template/progressbar/progressbar.html",
     "<div class=\"progress\">\n" +
     "  <div class=\"progress-bar\" ng-class=\"type && 'progress-bar-' + type\" role=\"progressbar\" aria-valuenow=\"{{value}}\" aria-valuemin=\"0\" aria-valuemax=\"{{max}}\" ng-style=\"{width: percent + '%'}\" aria-valuetext=\"{{percent | number:0}}%\" ng-transclude></div>\n" +
     "</div>");
 }]);
 
 angular.module("template/rating/rating.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/rating/rating.html",
+  $templateCache.put("template/rating/rating.html",
     "<span ng-mouseleave=\"reset()\" ng-keydown=\"onKeydown($event)\" tabindex=\"0\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"{{range.length}}\" aria-valuenow=\"{{value}}\">\n" +
     "    <i ng-repeat=\"r in range track by $index\" ng-mouseenter=\"enter($index + 1)\" ng-click=\"rate($index + 1)\" class=\"glyphicon\" ng-class=\"$index < value && (r.stateOn || 'glyphicon-star') || (r.stateOff || 'glyphicon-star-empty')\">\n" +
     "        <span class=\"sr-only\">({{ $index < value ? '*' : ' ' }})</span>\n" +
@@ -4143,7 +4143,7 @@ angular.module("template/rating/rating.html", []).run(["$templateCache", functio
 }]);
 
 angular.module("template/tabs/tab.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/tabs/tab.html",
+  $templateCache.put("template/tabs/tab.html",
     "<li ng-class=\"{active: active, disabled: disabled}\">\n" +
     "  <a href ng-click=\"select()\" tab-heading-transclude>{{heading}}</a>\n" +
     "</li>\n" +
@@ -4151,7 +4151,7 @@ angular.module("template/tabs/tab.html", []).run(["$templateCache", function($te
 }]);
 
 angular.module("template/tabs/tabset.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/tabs/tabset.html",
+  $templateCache.put("template/tabs/tabset.html",
     "<div>\n" +
     "  <ul class=\"nav nav-{{type || 'tabs'}}\" ng-class=\"{'nav-stacked': vertical, 'nav-justified': justified}\" ng-transclude></ul>\n" +
     "  <div class=\"tab-content\">\n" +
@@ -4166,7 +4166,7 @@ angular.module("template/tabs/tabset.html", []).run(["$templateCache", function(
 }]);
 
 angular.module("template/timepicker/timepicker.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/timepicker/timepicker.html",
+  $templateCache.put("template/timepicker/timepicker.html",
     "<table>\n" +
     "	<tbody>\n" +
     "		<tr class=\"text-center\">\n" +
@@ -4197,15 +4197,15 @@ angular.module("template/timepicker/timepicker.html", []).run(["$templateCache",
 }]);
 
 angular.module("template/typeahead/typeahead-match.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/typeahead/typeahead-match.html",
+  $templateCache.put("template/typeahead/typeahead-match.html",
     "<a tabindex=\"-1\" bind-html-unsafe=\"match.label | typeaheadHighlight:query\"></a>");
 }]);
 
 angular.module("template/typeahead/typeahead-popup.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("templates/typeahead/typeahead-popup.html",
+  $templateCache.put("template/typeahead/typeahead-popup.html",
     "<ul class=\"dropdown-menu\" ng-show=\"isOpen()\" ng-style=\"{top: position.top+'px', left: position.left+'px'}\" style=\"display: block;\" role=\"listbox\" aria-hidden=\"{{!isOpen()}}\">\n" +
     "    <li ng-repeat=\"match in matches track by $index\" ng-class=\"{active: isActive($index) }\" ng-mouseenter=\"selectActive($index)\" ng-click=\"selectMatch($index)\" role=\"option\" id=\"{{match.id}}\">\n" +
-    "        <div typeahead-match index=\"$index\" match=\"match\" query=\"query\" templates-url=\"templateUrl\"></div>\n" +
+    "        <div typeahead-match index=\"$index\" match=\"match\" query=\"query\" template-url=\"templateUrl\"></div>\n" +
     "    </li>\n" +
     "</ul>\n" +
     "");

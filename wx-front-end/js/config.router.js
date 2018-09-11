@@ -312,8 +312,8 @@ angular.module('app')
                   template: '<div ui-view class="fade-in-right-big smooth"></div>'
               })
               .state('access.signin', {
-                  url: '/signin',
-                  templateUrl: 'tpl/page_signin.html',
+                  url: '/logout',
+                  templateUrl: '/logout',
                   resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){

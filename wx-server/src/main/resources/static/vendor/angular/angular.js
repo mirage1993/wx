@@ -22156,7 +22156,7 @@ var ngClassEvenDirective = classDirective('Even', 1);
         <div id="template2" ng-cloak class="ng-cloak">{{ 'hello IE7' }}</div>
      </file>
      <file name="protractor.js" type="protractor">
-       it(templates, function() {
+       it('should remove the template directive and css class', function() {
          expect($('#template1').getAttribute('ng-cloak')).
            toBeNull();
          expect($('#template2').getAttribute('ng-cloak')).
