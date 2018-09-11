@@ -21,13 +21,9 @@ var ajaxHelper = function () {
         }
     };
     var ajax = {
-        submit: function () {
-            var options = ajaxOptions;
-            if (arguments.length > 0) {
-                $.each(arguments, function (i, j) {
-                    options = $.extend({}, ajaxOptions, arguments[i]);
-                });
-            };
+        submit: function (_options) {
+            options = $.extend({}, ajaxOptions, _options);
+            console.log(options);
             $.ajax(options);
         }
     };

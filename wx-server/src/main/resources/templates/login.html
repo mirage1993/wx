@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>微信公众平台登录</title>
@@ -7,6 +7,7 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/common.js"></script>
     <script src="js/plugin/jquery.form.min.js"></script>
+    <script src="js/plugin/jquery.serializejson.min.js"></script>
     <script src="js/plugin/jquery.hotkeys.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <style type="text/css">
@@ -36,12 +37,12 @@
             <form id="login-form" method="post" action="/login">
                 <h3 class="form_title">用户登录</h3>
                 <p>
-                    <input type="text" name="userName" id="userName"/>
+                    <input type="text" name="username" id="username"/>
                 </p>
                 <p>
                     <input type="password" id="password" name="password" class="ld_pass"/>
                 </p>
-
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <div class="ld_login">
                     <div class="ld_login_in">登录</div>
                     <div id="login-msg"></div>
@@ -61,14 +62,13 @@
 </html>
 <script type="text/javascript">
     var formValid = function () {
-        var username = $("#userName").val().trim();
-        var password = $("#password").val().trim();
-        if (username == '') {
+        var form = $("#login-form").serializeJSON();
+        if (form.username == '') {
             $("#login-msg").text("请输入用户名！");
-            $("#userName").focus();
+            $("#username").focus();
             return false;
         }
-        if (password == '') {
+        if (form.password == '') {
             $("#login-msg").text("请输入密码！");
             $("#password").focus();
             return false;
@@ -88,16 +88,17 @@
     });
     $(".ld_login_in").bind('click', function (e) {
         if (formValid()) {
-            var username = $("#userName").val().trim();
-            var password = $("#password").val().trim();
             $(".ld_login_in").text('登录中...');
-
-            //$('#login-form').submit();
-            ajaxHelper().submit({
-                url: '/login'
-                , contentType: "application/x-www-form-urlencoded"
-                , data: $("#login-form").serialize()
-            });
+            $('#login-form').submit();
+            // ajaxHelper().submit({
+            //     url: '/login'
+            //     , contentType: "application/x-www-form-urlencoded"
+            //     , data: $("#login-form").serializeJSON()
+            //     , dataType: '*'
+            //     , success: function (data) {
+            //         location.href = "/";
+            //     }
+            // });
             // $('#login-form').ajaxForm(function (data) {
             //     console.log(data);
             // });
