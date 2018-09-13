@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
 @Configuration
 @WebFilter(urlPatterns = {"/*"})
-@Order(-1)
 public class UrlFilter extends OncePerRequestFilter {
 
     private Logger LOG = LoggerFactory.getLogger(UrlFilter.class);
@@ -29,12 +29,16 @@ public class UrlFilter extends OncePerRequestFilter {
         String requestUrl = httpServletRequest.getRequestURI();
         if (!requestUrl.contains(".")) {
             String url = httpServletRequest.getRequestURL().toString();
+            String requestParam = httpServletRequest.getQueryString();
             String ip = HttpUtils.getIpAddress(httpServletRequest);
             String method = httpServletRequest.getMethod();
             InputStream in = httpServletRequest.getInputStream();
             String result = IOUtils.toString(in, "UTF-8");
             String message = "the request url:[" + ip + "][" + method + "] " + url;
-            if (!StringUtils.isNotEmpty(result)) {
+            if (requestParam != null && !StringUtils.isNotEmpty(requestParam)) {
+                message += "?" + requestParam;
+            }
+            if (!"".equals(result)) {
                 message += "[" + result + "]";
             }
             LOG.info(message);

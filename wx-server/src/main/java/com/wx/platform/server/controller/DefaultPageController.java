@@ -26,6 +26,7 @@ public class DefaultPageController {
     @ResponseBody
     public String getNav() {
         StringBuilder sb = new StringBuilder();
+
         sb.append("nav");
         return sb.toString();
     }
